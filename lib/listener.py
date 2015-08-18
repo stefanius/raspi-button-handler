@@ -2,7 +2,6 @@
 
 import RPi.GPIO as GPIO
 from optparse import OptionParser
-import sys
 from time import sleep
 
 parser = OptionParser()
@@ -35,8 +34,6 @@ def callback_function(channel):
         if options.bounce:
             print "bounce"
 
-# when a changing edge is detected on port 25, regardless of whatever
-# else is happening in the program, the function my_callback will be run
 GPIO.add_event_detect(options.pin, GPIO.BOTH, callback=callback_function)
 
 try:
