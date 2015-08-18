@@ -37,8 +37,8 @@ GPIO.add_event_detect(pin, GPIO.BOTH, callback=callback_function)
 try:
     print "When pressed, you'll see: Rising Edge detected on " + str(pin)
     print "When released, you'll see: Falling Edge detected on " + str(pin)
-    sleep(30)         # wait 30 seconds
-    print "Time's up. Finished!"
+    sleep(120)
+    print "Listener is shutdown"
 
 finally:                   # this block will run no matter how the try block exits
     GPIO.cleanup()         # clean up after yourself
