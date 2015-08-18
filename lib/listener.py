@@ -1,8 +1,19 @@
 #!/usr/bin/env python2.7
 
 import RPi.GPIO as GPIO
+from optparse import OptionParser
 import sys
 from time import sleep
+
+parser = OptionParser()
+parser.add_option("-f", "--file", dest="filename",
+                  help="write report to FILE", metavar="FILE")
+parser.add_option("-q", "--quiet",
+                  action="store_false", dest="verbose", default=True,
+                  help="don't print status messages to stdout")
+
+(options, args) = parser.parse_args()
+
 
 pin = int(sys.argv[1])
 detect_bounce = 0
