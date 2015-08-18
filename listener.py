@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 import sys
 from time import sleep
 
-pin = sys.argv[1]
+pin = int(sys.argv[1])
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(pin, GPIO.IN)
 active = 0
