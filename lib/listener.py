@@ -12,7 +12,7 @@ parser.add_option("-b", "--bounce", dest="bounce", default=False,
                   help="Log bouncing of the pin current")
 parser.add_option("-s", "--scriptpath", dest="scriptpath", metavar="PATH",
                   help="Set the path with pinscripts")
-parser.add_option("-t", "--time", dest="time", metavar="TIME", default=120,
+parser.add_option("-t", "--time", dest="time", metavar="TIME", default=120, type="int",
                   help="Set the time to sleep")
 (options, args) = parser.parse_args()
 
