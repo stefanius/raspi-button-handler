@@ -1,6 +1,5 @@
 #!/usr/bin/env python2.7
 
-
 import RPi.GPIO as GPIO
 import sys
 from time import sleep
