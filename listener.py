@@ -16,10 +16,10 @@ def callback_function(channel):
     global pin
 
     if (GPIO.input(pin) and not active):    #pin is pressed
-        print "Pin " + pin + " is ON (rising event)"
+        print "Pin " + str(pin) + " is ON (rising event)"
         active = 1
     elif (not GPIO.input(pin) and active):
-        print "Pin " + pin + " is OFF (falling event)"
+        print "Pin " + str(pin) + " is OFF (falling event)"
         active = 0
     else:
         print "bounce"
@@ -29,8 +29,8 @@ def callback_function(channel):
 GPIO.add_event_detect(pin, GPIO.BOTH, callback=callback_function)
 
 try:
-    print "When pressed, you'll see: Rising Edge detected on " + pin
-    print "When released, you'll see: Falling Edge detected on " + pin
+    print "When pressed, you'll see: Rising Edge detected on " + str(pin)
+    print "When released, you'll see: Falling Edge detected on " + str(pin)
     sleep(30)         # wait 30 seconds
     print "Time's up. Finished!"
 
