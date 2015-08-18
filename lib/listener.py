@@ -12,6 +12,8 @@ parser.add_option("-b", "--bounce", dest="bounce", default=False,
                   help="Log bouncing of the pin current")
 parser.add_option("-s", "--scriptpath", dest="scriptpath", metavar="PATH",
                   help="Set the path with pinscripts")
+parser.add_option("-t", "--time", dest="time", metavar="TIME", default=120,
+                  help="Set the time to sleep")
 (options, args) = parser.parse_args()
 
 GPIO.setmode(GPIO.BCM)
@@ -40,7 +42,7 @@ GPIO.add_event_detect(options.pin, GPIO.BOTH, callback=callback_function)
 try:
     print "When pressed, you'll see: Rising Edge detected on " + str(options.pin)
     print "When released, you'll see: Falling Edge detected on " + str(options.pin)
-    sleep(120)
+    sleep(options.time)
     print "Listener is shutdown"
 
 finally:                   # this block will run no matter how the try block exits
