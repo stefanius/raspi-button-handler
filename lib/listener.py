@@ -5,14 +5,20 @@ import sys
 from time import sleep
 
 pin = int(sys.argv[1])
+detect_bounce = 0
+
+if 2 in sys.argv:
+    detect_bounce = int(sys.argv[2])
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(pin, GPIO.IN)
 active = 0
 
-# Define a threaded callback function to run in another thread when events are detected
+
 def callback_function(channel):
     global active
     global pin
+    global detect_bounce
 
     if (GPIO.input(pin) and not active):    #pin is pressed
         print "Pin " + str(pin) + " is ON (rising event)"
@@ -21,7 +27,8 @@ def callback_function(channel):
         print "Pin " + str(pin) + " is OFF (falling event)"
         active = 0
     else:
-        print "bounce"
+        if detect_bounce:
+            print "bounce"
 
 # when a changing edge is detected on port 25, regardless of whatever
 # else is happening in the program, the function my_callback will be run
