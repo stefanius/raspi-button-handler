@@ -6,14 +6,15 @@ import sys
 from time import sleep
 
 parser = OptionParser()
-parser.add_option("-f", "--file", dest="filename",
-                  help="write report to FILE", metavar="FILE")
-parser.add_option("-q", "--quiet",
-                  action="store_false", dest="verbose", default=True,
-                  help="don't print status messages to stdout")
-
+parser.add_option("-p", "--pin", dest="pin", type="int",
+                  help="pinnumber to setup the listener", metavar="PIN")
+parser.add_option("-b", "--bounce", dest="bounce", default=False,
+                  help="Log bouncing of the pin current")
+parser.add_option("-s", "--scriptpath", dest="scriptpath", metavar="PATH",
+                  help="Set the path with pinscripts")
 (options, args) = parser.parse_args()
 
+print options.pin
 
 pin = int(sys.argv[1])
 detect_bounce = 0
