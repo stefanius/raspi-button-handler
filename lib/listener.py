@@ -10,10 +10,12 @@ parser.add_option("-p", "--pin", dest="pin", type="int",
                   help="pinnumber to setup the listener", metavar="PIN")
 parser.add_option("-b", "--bounce", dest="bounce", default=False,
                   help="Log bouncing of the pin current")
-parser.add_option("-s", "--scriptpath", dest="scriptpath", metavar="PATH", default=os.path.dirname(os.path.dirname(os.path.realpath(__file__))),
+parser.add_option("-s", "--scriptpath", dest="scriptpath", metavar="PATH", default=os.path.dirname(os.path.dirname(os.path.realpath(__file__))) + "/pinscripts",
                   help="Set the path with pinscripts")
 parser.add_option("-t", "--time", dest="time", metavar="TIME", default=120, type="int",
                   help="Set the time to sleep")
+parser.add_option("-e", "--executor", dest="executor", metavar="EXECUTOR", default=120, type="str",
+                  help="The script executor. i.e. bash, zsh, php or python")
 (options, args) = parser.parse_args()
 
 GPIO.setmode(GPIO.BCM)
@@ -29,8 +31,9 @@ def format_full_path(path, file):
 
 
 def run(fname):
-    os.path.isfile(fname)
-    print fname
+    if os.path.isfile(fname):
+        print fname
+        os.system("bash " + fname)
     return
 
 

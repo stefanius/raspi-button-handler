@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+echo "Hell yeay! This script is turned on when pin 19 is ON."
