@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-sudo python ./lib/listener.py --pin=19
+source lib/libdir
+
+sudo python $LIBDIR/listener.py --pin=19
