@@ -10,7 +10,7 @@ parser.add_option("-p", "--pin", dest="pin", type="int",
                   help="pinnumber to setup the listener", metavar="PIN")
 parser.add_option("-b", "--bounce", dest="bounce", default=False,
                   help="Log bouncing of the pin current")
-parser.add_option("-s", "--scriptpath", dest="scriptpath", metavar="PATH",
+parser.add_option("-s", "--scriptpath", dest="scriptpath", metavar="PATH", default=os.path.dirname(os.path.realpath(__file__)),
                   help="Set the path with pinscripts")
 parser.add_option("-t", "--time", dest="time", metavar="TIME", default=120, type="int",
                   help="Set the time to sleep")
@@ -22,6 +22,10 @@ active = 0
 
 pressed_file = 'p' + str(options.pin)
 released_file = 'r' + str(options.pin)
+
+
+def format_full_path(path, file):
+    return path + "/" + file
 
 
 def run(fname):
@@ -39,11 +43,11 @@ def callback_function(channel):
     if (GPIO.input(options.pin) and not active):    #pin is pressed
         print "Pin " + str(options.pin) + " is ON (rising event)"
         active = 1
-        run(options.scriptpath + pressed_file)
+        run(format_full_path(options.scriptpath + pressed_file))
     elif (not GPIO.input(options.pin) and active):  #pin is released
         print "Pin " + str(options.pin) + " is OFF (falling event)"
         active = 0
-        run(options.path + pressed_file)
+        run(format_full_path(options.scriptpath + released_file))
     else:
         if options.bounce:
             print "bounce"
