@@ -43,11 +43,11 @@ def callback_function(channel):
     if (GPIO.input(options.pin) and not active):    #pin is pressed
         print "Pin " + str(options.pin) + " is ON (rising event)"
         active = 1
-        run(format_full_path(options.scriptpath + pressed_file))
+        run(format_full_path(options.scriptpath, pressed_file))
     elif (not GPIO.input(options.pin) and active):  #pin is released
         print "Pin " + str(options.pin) + " is OFF (falling event)"
         active = 0
-        run(format_full_path(options.scriptpath + released_file))
+        run(format_full_path(options.scriptpath, released_file))
     else:
         if options.bounce:
             print "bounce"
