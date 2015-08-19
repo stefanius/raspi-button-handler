@@ -1,6 +1,7 @@
 #!/usr/bin/env python2.7
 
 import RPi.GPIO as GPIO
+import os.path
 from optparse import OptionParser
 from time import sleep
 
@@ -19,17 +20,30 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(options.pin, GPIO.IN)
 active = 0
 
+pressed_file = 'p' + str(options.pin)
+released_file = 'r' + str(options.pin)
+
+
+def run(fname):
+    os.path.isfile(fname)
+    print fname
+    return
+
 
 def callback_function(channel):
     global active
     global options
+    global pressed_file
+    global released_file
 
     if (GPIO.input(options.pin) and not active):    #pin is pressed
         print "Pin " + str(options.pin) + " is ON (rising event)"
         active = 1
-    elif (not GPIO.input(options.pin) and active):
+        run(options.path + pressed_file)
+    elif (not GPIO.input(options.pin) and active):  #pin is released
         print "Pin " + str(options.pin) + " is OFF (falling event)"
         active = 0
+        run(options.path + pressed_file)
     else:
         if options.bounce:
             print "bounce"
