@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
-source lib/libdir
+CURDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+source $CURDIR/lib/libdir
 
 sudo python $LIBDIR/listener.py --pin=13
