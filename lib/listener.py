@@ -10,7 +10,7 @@ parser.add_option("-p", "--pin", dest="pin", type="int",
                   help="pinnumber to setup the listener", metavar="PIN")
 parser.add_option("-b", "--bounce", dest="bounce", default=False,
                   help="Log bouncing of the pin current")
-parser.add_option("-s", "--scriptpath", dest="scriptpath", metavar="PATH", default=os.path.dirname(os.path.realpath(__file__)),
+parser.add_option("-s", "--scriptpath", dest="scriptpath", metavar="PATH", default=os.path.dirname(os.path.dirname(os.path.realpath(__file__))),
                   help="Set the path with pinscripts")
 parser.add_option("-t", "--time", dest="time", metavar="TIME", default=120, type="int",
                   help="Set the time to sleep")
